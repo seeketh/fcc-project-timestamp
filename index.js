@@ -24,12 +24,12 @@ app.get("/api/:ts", function (req, res) {
   if ((/^\d{1,13}$/).test(req.params.ts)) {
     const ts = new Date(Number.parseInt(req.params.ts));
     dateObj = {
-      unix: req.params.ts,
+      unix: Number(req.params.ts),
       utc: ts.toGMTString()
     }
   } else {
     const ts = new Date(req.params.ts);
-    let unix = ts.getTime();
+    const unix = Number(ts.getTime());
     if (isNaN(unix)) {
       dateObj = {
         error: ts.toString()
@@ -48,7 +48,7 @@ app.get("/api/:ts", function (req, res) {
 app.get("/api", (req, res) => {
   const ts = new Date();
   dateObj = {
-    unix: ts.getTime(),
+    unix: Number(ts.getTime()),
     utc: ts.toGMTString()
   };
 
