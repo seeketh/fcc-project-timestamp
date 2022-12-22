@@ -25,14 +25,14 @@ app.get("/api/:ts", function (req, res) {
     const ts = new Date(Number.parseInt(req.params.ts));
     dateObj = {
       unix: req.params.ts,
-      uct: ts.toString()
+      utc: ts.toString()
     }
   } else {
     dateObj = {
       error: "Invalid Date"
     };
   }
-  
+
   res.json(dateObj);
 });
 
@@ -40,7 +40,7 @@ app.get("/api", (req, res) => {
   const ts = new Date();
   dateObj = {
     unix: ts.getTime(),
-    uct: ts.toString()
+    utc: ts.toString()
   };
 
   res.json(dateObj);
