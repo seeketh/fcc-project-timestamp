@@ -28,9 +28,18 @@ app.get("/api/:ts", function (req, res) {
       utc: ts.toString()
     }
   } else {
-    dateObj = {
-      error: "Invalid Date"
-    };
+    const ts = new Date(req.params.ts);
+    let unix = ts.getTime();
+    if (isNaN(unix)) {
+      dateObj = {
+        error: ts.toString()
+      }
+    } else {
+      dateObj = {
+        unix,
+        uct: ts.toString()
+      }
+    }
   }
 
   res.json(dateObj);
