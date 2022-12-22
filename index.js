@@ -16,16 +16,10 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-const isUnix = (inputDate) => {
-  return (/^\d{1,13}$/).test(inputDate);
-}
-
 // Time-stamp endpoint
 app.get("/api/:ts", function (req, res) {
 
   let dateObj = null;
-
-  console.log(req.params.ts);
 
   if ((/^\d{1,13}$/).test(req.params.ts)) {
     const ts = new Date(Number.parseInt(req.params.ts));
@@ -58,4 +52,4 @@ app.all("*", (req, res) => {
   });
 });
 
-app.listen(PORT, console.log(`Service listening at ${PORT}`));
+app.listen(PORT, console.log(`Service listening on ${PORT}`));
