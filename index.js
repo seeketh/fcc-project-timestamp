@@ -28,22 +28,22 @@ app.get("/api/:ts", function (req, res) {
       uct: ts.toString()
     }
   } else {
-    const ts = new Date(req.params.ts);
-    let unix = ts.getTime();
-    if (isNaN(unix)) {
-      dateObj = {
-        error: ts.toString()
-      }
-    } else {
-      dateObj = {
-        unix,
-        uct: ts.toString()
-      }
-    }
+    dateObj = {
+      error: "Invalid Date"
+    };
   }
+  
+  res.json(dateObj);
+});
+
+app.get("/api", (req, res) => {
+  const ts = new Date();
+  dateObj = {
+    unix: ts.getTime(),
+    uct: ts.toString()
+  };
 
   res.json(dateObj);
-
 });
 
 app.all("*", (req, res) => {
