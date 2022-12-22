@@ -25,7 +25,7 @@ app.get("/api/:ts", function (req, res) {
     const ts = new Date(Number.parseInt(req.params.ts));
     dateObj = {
       unix: req.params.ts,
-      utc: ts.toString()
+      utc: ts.toGMTString()
     }
   } else {
     const ts = new Date(req.params.ts);
@@ -37,7 +37,7 @@ app.get("/api/:ts", function (req, res) {
     } else {
       dateObj = {
         unix,
-        utc: ts.toString()
+        utc: ts.toGMTString()
       }
     }
   }
@@ -49,7 +49,7 @@ app.get("/api", (req, res) => {
   const ts = new Date();
   dateObj = {
     unix: ts.getTime(),
-    utc: ts.toString()
+    utc: ts.toGMTString()
   };
 
   res.json(dateObj);
