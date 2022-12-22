@@ -37,7 +37,7 @@ app.get("/api/:ts", function (req, res) {
     } else {
       dateObj = {
         unix,
-        uct: ts.toString()
+        utc: ts.toString()
       }
     }
   }
